@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
 import 'appbar.dart';
 
-class SettingsPage extends StatelessWidget {
+class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
+
+  @override
+  _SettingsPageState createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+  // Variable to hold the trigger value
+  double triggerValue = 50.0;
+  final TextEditingController triggerController = TextEditingController();
+
+  // Other settings values (same as your original code)
+  String notificationFrequency = 'Immediate';
+  String notificationSound = 'Default';
+  bool vibration = false;
+  bool ledNotification = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the controller with the current trigger value
+    triggerController.text = triggerValue.toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,29 +35,46 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Trigger Value
+            // Trigger Value - Text Input instead of Slider
             Row(
               children: [
                 const Text('Trigger Value:'),
                 Expanded(
-                  child: Slider(
-                    value: 50.0, // Replace with actual value
+                  child: TextField(
+                    controller: triggerController,
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      hintText: 'Enter value',
+                      border: OutlineInputBorder(),
+                    ),
                     onChanged: (value) {
-                      // Update trigger value
+                      // Try to update trigger value with entered number
+                      try {
+                        final double parsedValue = double.parse(value);
+                        if (parsedValue >= 0.0 && parsedValue <= 10000.0) {
+                          setState(() {
+                            triggerValue = parsedValue;
+                          });
+                        }
+                      } catch (e) {
+                        // If the input is not valid, do nothing
+                      }
                     },
-                    min: 0.0,
-                    max: 10000,
                   ),
                 ),
-                const Text('50.0'), // Replace with formatted value
+                const Text('0.0'), // Placeholder for the current value
               ],
             ),
 
+            const SizedBox(height: 16),
+
             // Notification Frequency
             DropdownButtonFormField<String>(
-              value: 'Immediate', // Replace with actual value
+              value: notificationFrequency,
               onChanged: (value) {
-                // Update notification frequency
+                setState(() {
+                  notificationFrequency = value!;
+                });
               },
               items: ['Immediate', 'Daily', 'Weekly'].map((String value) {
                 return DropdownMenuItem<String>(
@@ -45,11 +84,15 @@ class SettingsPage extends StatelessWidget {
               }).toList(),
             ),
 
+            const SizedBox(height: 16),
+
             // Notification Sound
             DropdownButtonFormField<String>(
-              value: 'Default', // Replace with actual value
+              value: notificationSound,
               onChanged: (value) {
-                // Update notification sound
+                setState(() {
+                  notificationSound = value!;
+                });
               },
               items: ['Default', 'Sound 1', 'Sound 2'].map((String value) {
                 return DropdownMenuItem<String>(
@@ -59,28 +102,38 @@ class SettingsPage extends StatelessWidget {
               }).toList(),
             ),
 
+            const SizedBox(height: 16),
+
             // Vibration
             SwitchListTile(
               title: const Text('Vibration'),
-              value: false, // Replace with actual value
+              value: vibration,
               onChanged: (value) {
-                // Update vibration setting
+                setState(() {
+                  vibration = value;
+                });
               },
             ),
+
+            const SizedBox(height: 16),
 
             // LED Notification
             SwitchListTile(
               title: const Text('LED Notification'),
-              value: false, // Replace with actual value
+              value: ledNotification,
               onChanged: (value) {
-                // Update LED notification setting
+                setState(() {
+                  ledNotification = value;
+                });
               },
             ),
+
+            const SizedBox(height: 16),
 
             // Save Button
             ElevatedButton(
               onPressed: () {
-                // Save settings
+                // Save settings logic
               },
               child: const Text('Save'),
             ),

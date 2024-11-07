@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "282016296671",
+    "project_id": "swac-xcd",
+    "storage_bucket": "swac-xcd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282016296671:android:0d59803d53ce522858c36a",
+        "android_client_info": {
+          "package_name": "com.swac.yourapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSUdZ3F0QNBFIh0wsb4IFnP0U5dIA7EQ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -30,13 +30,6 @@ class _MyDrawerState extends State<MyDrawer> {
                 );
             },
           ),
-          ListTile(
-            title: const Text('Sign out'),
-            onTap: () {
-              // Update the state of the app or navigate to Page 2
-              // ...
-            },
-          ),
           // Add more ListTile items for other drawer options
         ],
       ),
