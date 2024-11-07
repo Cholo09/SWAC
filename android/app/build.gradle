@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+        classpath 'com.google.gms:google-services:4.3.15'  // Firebase plugin
+    }
+}
+
 plugins {
     id "com.android.application"
     id "kotlin-android"
@@ -36,7 +42,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.swac"
+        applicationId = "com.swac.app"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
         minSdk = flutter.minSdkVersion

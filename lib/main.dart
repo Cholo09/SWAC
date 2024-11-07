@@ -42,7 +42,8 @@ class HomePage extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Container(
+                  Container( //dito ilalagay ang line chart
+                    
                     height: 300.0,
                     padding: const EdgeInsets.all(8.0),
                     margin: EdgeInsets.symmetric(
@@ -60,9 +61,10 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // Add Firebase data here (if needed)
+                    // Add Firebase data here
+                    
                   ),
-                  Container(
+                  Container( //container para ilagay yung estimated bill
                     height: 120.0,
                     margin: EdgeInsets.symmetric(
                         vertical: MediaQuery.of(context).size.width * 0.05,
@@ -80,7 +82,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // Add Firebase data or widgets here
+                    // Add Firebase data or widgets here 
                   ),
                 ],
               )
