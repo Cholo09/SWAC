@@ -16,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                Text(
-                title, // papaltan user name
+                title, semanticsLabel: 'Hi User',
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 24.0,

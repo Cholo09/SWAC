@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:swac/drawer.dart'; 
+import 'package:swac/drawer.dart';
 import 'appbar.dart';
-
+import 'package:intl/intl.dart'; 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      debugShowCheckedModeBanner: false, 
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 229, 229, 239), 
+      backgroundColor: const Color.fromARGB(255, 229, 229, 239),
       drawer: const MyDrawer(),
       appBar: const CustomAppBar(title: 'Home'),
       body: SingleChildScrollView(
@@ -42,8 +42,9 @@ class HomePage extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  Container( //dito ilalagay ang line chart
-                    
+                  Container(
+                    //dito ilalagay ang line chart
+
                     height: 300.0,
                     padding: const EdgeInsets.all(8.0),
                     margin: EdgeInsets.symmetric(
@@ -62,34 +63,61 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                     // Add Firebase data here
-                    
                   ),
-                  Container( //container para ilagay yung estimated bill
-                    height: 120.0,
-                    margin: EdgeInsets.symmetric(
-                        vertical: MediaQuery.of(context).size.width * 0.05,
-                        horizontal: MediaQuery.of(context).size.width * 0.05),
+                  Padding(
                     padding: const EdgeInsets.all(8.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 3,
-                          blurRadius: 7,
-                          offset: const Offset(5, 5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment
+                          .start, // Align text to the left by default
+                      children: [
+                        // 'Estimated Bill' Text
+                        const Text(
+                          'Estimated Bill',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(
+                            height:
+                                8), // Space between 'Estimated Bill' and the next text
+                        // 'P 1000.00' Text
+                        const Text(
+                          'P 1000.00',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        const SizedBox(
+                            height:
+                                8), // Space between the amount and the next text
+                        // Row for the dynamic date and alignment
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Empty space on the left if you want to keep the dynamic date on the right
+                            Text(
+                              DateFormat('MMM' 'dd').format(DateTime.now()),
+                              
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    // Add Firebase data or widgets here 
-                  ),
-                ],
-              )
-            ],
+                  )
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
-      ),
-    );
+        )
+      );
   }
 }
