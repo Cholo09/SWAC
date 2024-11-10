@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:swac/drawer.dart';
 import 'appbar.dart';
-import 'package:intl/intl.dart'; 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -64,14 +64,14 @@ class HomePage extends StatelessWidget {
                     ),
                     // Add Firebase data here
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment
                           .start, // Align text to the left by default
                       children: [
                         // 'Estimated Bill' Text
-                        const Text(
+                        Text(
                           'Estimated Bill',
                           style: TextStyle(
                             fontSize: 20,
@@ -79,35 +79,16 @@ class HomePage extends StatelessWidget {
                             color: Colors.black,
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                             height:
                                 8), // Space between 'Estimated Bill' and the next text
-                        // 'P 1000.00' Text
-                        const Text(
+                        Text(
                           'P 1000.00',
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.black87,
                           ),
-                        ),
-                        const SizedBox(
-                            height:
-                                8), // Space between the amount and the next text
-                        // Row for the dynamic date and alignment
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            // Empty space on the left if you want to keep the dynamic date on the right
-                            Text(
-                              DateFormat('MMM' 'dd').format(DateTime.now()),
-                              
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
                         ),
                       ],
                     ),
